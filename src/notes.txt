@@ -1,0 +1,31 @@
+
+
+
+
+<!--
+<script type="text/javascript">
+    function handleLoginRequest(xhr, status, args) {
+        dlg.hide();
+        jQuery('#loadLink').fadeOut();
+        //window.location.reload();
+    }
+</script>
+
+<h:outputLink id="loadLink" value="javascript:void(0)" onclick="dlg.show()" title="load">
+    <h:outputText value="Already Registered?"/>
+</h:outputLink>
+
+<p:dialog id="dialog" header="Already Registered?" widgetVar="dlg">
+    <h:form id="loadForm">
+        <p:growl id="growlLoad" sticky="true" showDetail="true"/>
+        <h:panelGrid columns="2" cellpadding="5">
+            <h:outputLabel for="ExEmail" value="Email : "/>
+            <p:inputText value="#{reg.exEmail}" id="ExEmail" required="true" label="ExEmail"/>
+            <f:facet firstName="footer">
+                <p:commandButton id="loadButton" value="Retrieve Registration"
+                                 actionListener="#{reg.load}" oncomplete="handleLoginRequest(xhr, status, args)" update="growlLoad" process="@this"/>
+            </f:facet>
+        </h:panelGrid>
+    </h:form>
+</p:dialog>
+-->

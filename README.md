@@ -1,0 +1,2 @@
+JavaEE/PostGreSQL
+Hibernate/Primefaces
