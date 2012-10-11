@@ -316,8 +316,6 @@
     <copy file="${basedir}/lib/pepper-grinder-1.0.4.jar" tofile="${artifact.output.registration:war_exploded}/WEB-INF/lib/pepper-grinder-1.0.4.jar"/>
     <copy file="${basedir}/lib/poi-3.7.jar" tofile="${artifact.output.registration:war_exploded}/WEB-INF/lib/poi-3.7.jar"/>
     <copy file="${basedir}/lib/postgresql-9.1-901.jdbc4.jar" tofile="${artifact.output.registration:war_exploded}/WEB-INF/lib/postgresql-9.1-901.jdbc4.jar"/>
-    <copy file="${basedir}/lib/primefaces-3.2-sources.jar" tofile="${artifact.output.registration:war_exploded}/WEB-INF/lib/primefaces-3.2-sources.jar"/>
-    <copy file="${basedir}/lib/primefaces-3.2.jar" tofile="${artifact.output.registration:war_exploded}/WEB-INF/lib/primefaces-3.2.jar"/>
     <copy file="${basedir}/lib/primefaces-mobile-1.0.0-SNAPSHOT.jar" tofile="${artifact.output.registration:war_exploded}/WEB-INF/lib/primefaces-mobile-1.0.0-SNAPSHOT.jar"/>
     <copy file="${basedir}/lib/redmond-1.0.4.jar" tofile="${artifact.output.registration:war_exploded}/WEB-INF/lib/redmond-1.0.4.jar"/>
     <copy file="${basedir}/lib/rocket-1.0.4.jar" tofile="${artifact.output.registration:war_exploded}/WEB-INF/lib/rocket-1.0.4.jar"/>
@@ -332,6 +330,7 @@
     <copy file="${basedir}/lib/ui-darkness-1.0.4.jar" tofile="${artifact.output.registration:war_exploded}/WEB-INF/lib/ui-darkness-1.0.4.jar"/>
     <copy file="${basedir}/lib/ui-lightness-1.0.4.jar" tofile="${artifact.output.registration:war_exploded}/WEB-INF/lib/ui-lightness-1.0.4.jar"/>
     <copy file="${basedir}/lib/vader-1.0.4.jar" tofile="${artifact.output.registration:war_exploded}/WEB-INF/lib/vader-1.0.4.jar"/>
+    <copy file="${basedir}/lib/primefaces-3.4.1.jar" tofile="${artifact.output.registration:war_exploded}/WEB-INF/lib/primefaces-3.4.1.jar"/>
     <copy file="${basedir}/lib/poi-3.8.jar" tofile="${artifact.output.registration:war_exploded}/WEB-INF/lib/poi-3.8.jar"/>
     <copy file="${basedir}/lib/commons-codec-1.5.jar" tofile="${artifact.output.registration:war_exploded}/WEB-INF/lib/commons-codec-1.5.jar"/>
   </target>

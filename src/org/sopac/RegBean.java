@@ -45,7 +45,7 @@ public class RegBean {
                 registered.setFirstname(r.getFirstName());
                 registered.setSurname(r.getSurname());
                 email = r.getEmail().substring(0, email.indexOf("@") + 1);
-                email = email + "xxxxxxxxxxx" + r.getEmail().substring(r.getEmail().indexOf("."), r.getEmail().length());
+                email = email + "xxxxxxxxxxx" + r.getEmail().substring(r.getEmail().lastIndexOf("."), r.getEmail().length());
                 registered.setEmail(email);
                 registered.setOrganisation(r.getOrganisationName());
                 registeredList.add(registered);
