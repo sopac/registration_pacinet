@@ -3,10 +3,7 @@ package org.sopac.domain;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -62,8 +59,29 @@ public class Registration {
     //public Integer tripFirstPreference;
     //public Integer tripSecondPreference;
 
+    @Column(nullable = true)
+    public boolean apnicWorkshop1;
+    @Column(nullable = true)
+    public boolean apnicWorkshop2;
 
     //getters and setters
+    public boolean isApnicWorkshop1() {
+        return apnicWorkshop1;
+    }
+
+    public void setApnicWorkshop1(boolean apnicWorkshop1) {
+        this.apnicWorkshop1 = apnicWorkshop1;
+    }
+
+    public boolean isApnicWorkshop2() {
+        return apnicWorkshop2;
+    }
+
+    public void setApnicWorkshop2(boolean apnicWorkshop2) {
+        this.apnicWorkshop2 = apnicWorkshop2;
+    }
+
+
     public Long getId() {
         return id;
     }

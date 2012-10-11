@@ -31,6 +31,7 @@ public class ExportServlet extends javax.servlet.http.HttpServlet {
 
     }
 
+
     protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, java.io.IOException {
         try {
             File excel = new File("/tmp/ppdrm.prwsc.registration.xls");
@@ -54,7 +55,7 @@ public class ExportServlet extends javax.servlet.http.HttpServlet {
             String headers[] = {"Id", "DateRegistered", "Title", "FirstName", "Surname", "Email", "JobTitle", "Organisation", "Affiliation", "Country",
                     "MailingAddress", "Telephone", "Fax", "Nationality", "PassportNo", "DateOfIssue", "PlaceOfIssue", "ExpiryDate", "SpecialDietry",
                     "FirstAccomondationChoice", "SecondAccomodationChoice", "ThirdAccomodationChoice",
-                    "Display Table Required", "Posters", "Display Board", "Brochures", "Other", "Other Materials", "Field Trip - First Preference", "Field Trip - Second Preference"};
+                    "Display Table Required", "Posters", "Display Board", "Brochures", "Other", "Other Materials", "Field Trip - First Preference", "Field Trip - Second Preference", "APNIC Workshop 1", "APNIC Workshop 2"};
 
             int count = 0;
             for (String h : headers) {
@@ -162,6 +163,11 @@ public class ExportServlet extends javax.servlet.http.HttpServlet {
                 //if (r.getTripSecondPreference() != null) trip2 = String.valueOf(r.getTripSecondPreference());
                 cell.setCellValue(trip2);
 
+                cell = row.createCell(30);
+                cell.setCellValue(r.isApnicWorkshop1());
+
+                cell = row.createCell(31);
+                cell.setCellValue(r.isApnicWorkshop2());
 
             }
             sess.close();

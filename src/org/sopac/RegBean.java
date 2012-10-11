@@ -9,7 +9,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Logger;
 
 /**
@@ -24,6 +27,52 @@ import java.util.logging.Logger;
 public class RegBean {
 
     private String exEmail;
+
+    private List<Registered> registeredList = null;
+
+    public List<Registered> getRegisteredList() {
+        if (registeredList != null) return registeredList;
+        registeredList = new ArrayList<Registered>();
+        Session sess = HibernateUtil.getSessionFactory().openSession();
+        List res = sess.createQuery("from Registration as r order by r.dateRegistered desc").list();
+
+        ArrayList<String> checkList = new ArrayList<String>();
+        for (int i = 0; i < res.size(); i++) {
+            Registration r = (Registration) res.get(i);
+            String email = r.getEmail();
+            if (!checkList.contains(email)) {
+                Registered registered = new Registered();
+                registered.setFirstname(r.getFirstName());
+                registered.setSurname(r.getSurname());
+                email = r.getEmail().substring(0, email.indexOf("@") + 1);
+                email = email + "xxxxxxxxxxx" + r.getEmail().substring(r.getEmail().indexOf("."), r.getEmail().length());
+                registered.setEmail(email);
+                registered.setOrganisation(r.getOrganisationName());
+                registeredList.add(registered);
+                checkList.add(r.getEmail());
+            }
+
+
+        }
+        sess.close();
+        return registeredList;
+    }
+
+    public void setRegisteredList(List<Registered> registeredList) {
+        this.registeredList = registeredList;
+    }
+
+
+    public String getIpPort() {
+        HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        return String.valueOf(req.getServerPort());
+    }
+
+    public void setIpPort(String ipPort) {
+        this.ipPort = ipPort;
+    }
+
+    private String ipPort;
 
     public String getExEmail() {
         return exEmail;
@@ -112,6 +161,9 @@ public class RegBean {
             r.setTelephone(info.getTelephone());
             //r.setTripFirstPreference(info.getTripFirstPreference());
             //r.setTripSecondPreference(info.getTripSecondPreference());
+
+            r.setApnicWorkshop1(info.isApnicWorkshop1());
+            r.setApnicWorkshop2((info.isApnicWorkshop2()));
 
             r.setDateRegistered(new Date());
 

@@ -46,6 +46,27 @@ public class RegInfo implements Serializable {
     public Integer tripFirstPreference;
     public Integer tripSecondPreference;
 
+    public boolean apnicWorkshop1;
+    public boolean apnicWorkshop2;
+
+    public boolean isApnicWorkshop1() {
+        return apnicWorkshop1;
+    }
+
+    public void setApnicWorkshop1(boolean apnicWorkshop1) {
+        this.apnicWorkshop1 = apnicWorkshop1;
+    }
+
+    public boolean isApnicWorkshop2() {
+        return apnicWorkshop2;
+    }
+
+    public void setApnicWorkshop2(boolean apnicWorkshop2) {
+        this.apnicWorkshop2 = apnicWorkshop2;
+    }
+
+
+
     public Integer getTripFirstPreference() {
         return tripFirstPreference;
     }

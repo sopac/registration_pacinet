@@ -1,7 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:p="http://primefaces.org/ui" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:ui="http://java.sun.com/jsf/facelets">
 
 
 ﻿
@@ -36,6 +35,18 @@
 
 </div>
 
+<c:set var="port" value="443"/>
+<c:if test="#{reg.ipPort != port}">
+    <p:panel header="Security Warning" closable="true" toggleable="true">
+        <span style="color: red">
+        <img src="security.png" alt="security" style="padding-right: 10px" align="left" height="30px"></img>
+        In the current mode, this registration application communicates back to the server in an unencrypted, hence insecure manner. Should you prefer to submit your registration over a secure HTTPS/SSL connection (recommended), please navigate to
+        <a href='https://ict.sopac.org/pacinet'>https://ict.sopac.org/pacinet</a>
+        </span>
+    </p:panel>
+    <br/>
+</c:if>
+
 
 <h:form>
 
@@ -43,11 +54,14 @@
 
 <p:wizard widgetVar="wiz" flowListener="#{reg.onFlowProcess}">
 
+
 <p:tab id="personal" title="Personal">
     <p:panel header="Part A">
         <h:messages style="color: red" errorClass="error"/>
 
+
         <div align="right" style="border-color: #00008b; border: 2px; float: right">
+
             <br/><br/>
             <a style="text-decoration: none; color: #00008b;" href="PacINET2012Letter.pdf" target="_blank">
                 <img border="1px" src="letter.png" width="100px" alt="letter"/>
@@ -66,6 +80,11 @@
             </a>
             <a style="text-decoration: none; color: #00008b;" href="http://www.fijiairlines.com/fiji-visa-requirements.cfm" target="_blank">
                 <h2>Visa Information</h2>
+            </a>
+            <a style="text-decoration: none; color: #006400;" href="list.jsf">
+                <span style="color: #a9a9a9;">Already registered?<br/>Verify by viewing the list below</span>
+
+                <h2>Registrant List</h2>
             </a>
 
 
@@ -95,7 +114,10 @@
 
             <h:outputText value="Email: *"/>
             <p:inputText style="width: 200px" required="true" label="Email"
-                         value="#{reg.info.email}"/> <i>valid email address is required</i>
+                         value="#{reg.info.email}">
+                <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"/>
+            </p:inputText>
+            <i>valid email address is required</i>
 
 
             <h:outputText value="Job Title: *"/>
@@ -199,6 +221,24 @@
     </p:panel>
 </p:tab>
 
+<p:tab id="apnic" title="APNIC Workshops">
+    <p:panel header="Part C">
+        <h:messages style="color: red" errorClass="error"/>
+
+        Optionally, please indicate if you'd like to attend the following APNIC training workshops :
+        <br/><br/>
+
+        <img src="http://www.apnic.net/__data/assets/image/0010/35947/180px-text-and-logo.jpg" align="right" style="float: right"/>
+
+        <h:panelGrid columns="2" style="width: 500px" columnClasses="label, value" styleClass="grid">
+            <h:outputText value="a.) 21 - 22 November: Network Security Workshop (2 days)"/>
+            <p:selectBooleanCheckbox value="#{reg.info.apnicWorkshop1}"/>
+            <h:outputText value="b.) 23 - 24 November: DNS Workshop (2 days)"/>
+            <p:selectBooleanCheckbox value="#{reg.info.apnicWorkshop2}"/>
+        </h:panelGrid>
+
+    </p:panel>
+</p:tab>
 
 <!--
 
@@ -305,7 +345,11 @@
         </div>
         -->
         <br/>
-        <p:commandButton value="Submit" actionListener="#{reg.save}" update="growl" process="@this"/>
+        <p:commandButton value="Submit" actionListener="#{reg.save}" update="growl" process="@this" onclick="confirmation.show()"/>
+
+        <p:confirmDialog id="confirmDialog" message="Your registration has been accepted." header="Thank You" severity="info" widgetVar="confirmation">
+            <p:commandButton id="confirmDialogButton" value="Ok" title="Ok" oncomplete="confirmation.hide()"/>
+        </p:confirmDialog>
 
     </p:panel>
 </p:tab>
@@ -315,7 +359,7 @@
 
 </h:form>
 
-<p style="font-family:Lucida Grande, Lucida Sans, Arial, sans-serif; font-size: 12px; margin-top: -24px" align="left">
+<p style="font-family:Lucida Grande, Lucida Sans, Arial, sans-serif; font-size: 12px; margin-top: -24px" align="center">
 
     Your email address is used to uniquely identify your registration. If you register multiple times, only the latest one would be taken into account.<br/>
     Please contact the following email addresses for further information:

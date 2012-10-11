@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui" xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+
+﻿
+<f:view contentType="text/html">
+    <h:head>
+
+        <style>
+            .ui-widget,
+            .ui-widget .ui-widget {
+                font-size: 90% !important;
+            }
+        </style>
+
+        ﻿
+        <title>Registration - PacINET 2012 Registration</title>
+    </h:head>
+    <h:body>
+        <div style="margin-top: -40px">
+            <a href="http://www.picisoc.org" target="_blank"><img align="left" alt="picisoc" src="picisoc.png"/></a>
+            <a href="http://www.usp.ac.fj" target="_blank"><img align="left" alt="usp" src="usp.jpg"/></a>
+            <a href="http://www.spc.int" target="_blank"><img align="left" alt="spc" src="spc.jpg"/></a>
+
+
+            <div style="margin-right: 20px" align="right">
+                <h1 style="color: #00B3ED;">Online Registration Form</h1>
+
+                <p style="font-family: Arial; margin-top: -10px; font-size: 24px">PacINET 2012 Conference</p>
+
+                <p style="font-family: Arial; margin-top: -20px; font-size: 14px"> 22nd - 26th November 2012<br/>Japan Pacific ICT Centre, University of the South Pacific (USP), Suva, Fiji Islands
+                </p>
+            </div>
+
+        </div>
+
+        <c:set var="port" value="443"/>
+        <c:if test="#{reg.ipPort != port}">
+            <p:panel header="Security Warning" closable="true" toggleable="true">
+        <span style="color: red">
+        <img src="security.png" alt="security" style="padding-right: 10px" align="left" height="30px"></img>
+        In the current mode, this registration application communicates back to the server in an unencrypted, hence insecure manner. Should you prefer to submit your registration over a secure HTTPS/SSL connection (recommended), please navigate to
+        <a href='https://ict.sopac.org/pacinet'>https://ict.sopac.org/pacinet</a>
+        </span>
+            </p:panel>
+            <br/>
+        </c:if>
+
+        <p:growl id="growl" sticky="true" showDetail="true"/>
+
+        <h:form>
+            <p:dataTable id="tbl" var="r" value="#{reg.registeredList}">
+                <f:facet name="header">
+                    List of Registrants
+                </f:facet>
+                <p:column headerText="FirstName" sortBy="${r.firstname}">
+                    <h:outputText value="#{r.firstname}"/>
+                </p:column>
+
+                <p:column headerText="Surname" sortBy="${r.surname}">
+                    <h:outputText value="#{r.surname}"/>
+                </p:column>
+
+                <p:column headerText="Organisation" sortBy="${r.organisation}">
+                    <h:outputText value="#{r.organisation}"/>
+                </p:column>
+
+                <p:column headerText="Email" sortBy="${r.email}">
+                    <h:outputText value="#{r.email}"/>
+                </p:column>
+            </p:dataTable>
+
+            <br/>
+
+
+            <p:panel header="Export" style="width: 130px">
+                <h:commandLink>
+                    <p:graphicImage value="xls.png"/>
+                    <p:dataExporter type="xls" target="tbl" fileName="PacINET.2012.Registrations"/>
+                </h:commandLink>
+
+                <h:commandLink>
+                    <p:graphicImage value="pdf.png"/>
+                    <p:dataExporter type="pdf" target="tbl" fileName="PacINET.2012.Registrations"/>
+                </h:commandLink>
+
+                <h:commandLink>
+                    <p:graphicImage value="csv.png"/>
+                    <p:dataExporter type="csv" target="tbl" fileName="PacINET.2012.Registrations"/>
+                </h:commandLink>
+            </p:panel>
+        </h:form>
+
+
+        <p style="font-family:Lucida Grande, Lucida Sans, Arial, sans-serif; font-size: 12px;" align="left">
+
+            Your email address is used to uniquely identify your registration. If you register multiple times, only the latest one would be taken into account.<br/>
+            Please contact the following email addresses for further information:
+            <a style="text-decoration: none" href="mailto:anjum@spc.int">Anju Mangal</a> |
+            <a style="text-decoration: none" href="mailto:siaosis@spc.int">Siaosi Sovaleni</a> |
+            <a style="text-decoration: none" href="mailto:hilyard@oyster.net.ck">Maureen Hilyard</a> |
+            <a style="text-decoration: none" href="mailto:finau_k@usp.ac.fj">Kisione Finau</a> |
+            <a style="text-decoration: none" href="mailto:Debraw@spc.int">Debra Williams</a>
+            <hr/>
+            <span style="color: #a9a9a9;">Applied GeoScience and Technology Division, Secretariat of the Pacific Community, 2012</span>
+        </p>
+
+
+    </h:body>
+</f:view>
+
+</html>
