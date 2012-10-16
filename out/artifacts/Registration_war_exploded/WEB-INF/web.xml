@@ -38,7 +38,7 @@
 
     <servlet-mapping>
         <servlet-name>ExportServlet</servlet-name>
-        <url-pattern>/exportreg1618</url-pattern>
+        <url-pattern>/exportreg161837874</url-pattern>
     </servlet-mapping>
 
     <filter>

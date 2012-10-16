@@ -48,6 +48,7 @@ public class RegBean {
                 email = email + "xxxxxxxxxxx" + r.getEmail().substring(r.getEmail().lastIndexOf("."), r.getEmail().length());
                 registered.setEmail(email);
                 registered.setOrganisation(r.getOrganisationName());
+                registered.setCountry(r.getCountry());
                 registeredList.add(registered);
                 checkList.add(r.getEmail());
             }

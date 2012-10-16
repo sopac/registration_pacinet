@@ -12,6 +12,17 @@ public class Registered {
     String firstname;
     String surname;
     String email;
+    String organisation;
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    String country;
 
     public String getFirstname() {
         return firstname;
@@ -45,6 +56,6 @@ public class Registered {
         this.organisation = organisation;
     }
 
-    String organisation;
+
 
 }
